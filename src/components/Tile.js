@@ -2,7 +2,6 @@ import React, { useState } from "react";
 
 function Tile(props) {
   const hogss = props.a_hog;
-  console.log("yooooooo", props.a_hog);
 
   const [toggler, setToggler] = useState(false);
 
@@ -19,7 +18,6 @@ function Tile(props) {
   function handleClick() {
     // toggler = false;
     setToggler(() => !toggler);
-    console.log("this is:");
   }
 
   const rHogs = hogss.map((hog) => {
