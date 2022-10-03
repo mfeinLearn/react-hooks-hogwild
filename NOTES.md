@@ -8,19 +8,11 @@
 
 [x] Allow the user to filter the hogs that are **greased**
 
-[] Allow the user to sort the hogs based on name or weight
+[x] Allow the user to sort the hogs based on name or weight
 
-what do we sort?
+[x] BONUS: Allow users to hide hogs (not delete them, just hide them from view!)
 
-- the hogs array
+[] BONUS: Add a form to allow users to add new hogs to the page
 
-1. how do we sort strings (names)?
-   // .sort();
-2. how do we sort numbers (weight)?
-   //
-   var numArray = [140000, 104, 99];
-   numArray.sort(function(a, b) {
-   return a - b;
-   });
-
-console.log(numArray);
+- create a form
+- add new hogs
