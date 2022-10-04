@@ -21,41 +21,42 @@ function CreateHog({ handleAddHog }) {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Name:
-        {/* <input type="text" value={value} onChange={(e) => handleChange(e)} /> */}
-        <input name="name" value={value.name} onChange={handleChange} />
-        <br />
-        specialty:
-        <input
-          name="specialty"
-          value={value.specialty}
-          onChange={handleChange}
-        />
-        <br />
-        greased:
-        <input
-          name="greased"
-          type="radio"
-          value={value.greased}
-          onChange={handleChange}
-        />
-        <br />
-        weight:
-        <input name="weight" value={value.weight} onChange={handleChange} />
-        <br />
-        image:
-        <input name="image" value={value.image} onChange={handleChange} />
-        <br />
-        highest medal achieved:
-        <input
-          name="highest medal achieved"
-          value={value["highest medal achieved"]}
-          onChange={handleChange}
-        />
-        <br />
-      </label>
+    <form class="ui form" onSubmit={handleSubmit}>
+      <label>Name:</label>
+      {/* <input type="text" value={value} onChange={(e) => handleChange(e)} /> */}
+      <input name="name" value={value.name} onChange={handleChange} />
+      <br />
+      <br />
+      <label>specialty:</label>
+      <input name="specialty" value={value.specialty} onChange={handleChange} />
+
+      <br />
+      <br />
+      <label>weight:</label>
+      <input name="weight" value={value.weight} onChange={handleChange} />
+      <br />
+      <br />
+      <label>image:</label>
+      <input name="image" value={value.image} onChange={handleChange} />
+      <br />
+      <br />
+      <label>highest medal achieved:</label>
+      <input
+        name="highest medal achieved"
+        value={value["highest medal achieved"]}
+        onChange={handleChange}
+      />
+      <br />
+      <br />
+      <label>greased:</label>
+      <input
+        name="greased"
+        type="radio"
+        value={value.greased}
+        onChange={handleChange}
+      />
+      <br />
+      <br />
       <input type="submit" value="Submit" />
     </form>
   );

@@ -2,19 +2,16 @@ import React, { useState } from "react";
 import Nav from "./Nav";
 import Tile from "./Tile";
 import CreateHog from "./CreateHog";
-
+import { useEffect } from "react";
 import hogs from "../porkers_data";
-// debugger;
 
-// let hogs = [...hogs, hog]
-// let savedHogs = [];
 function App() {
   const [greased, setGreased] = useState(false);
   const [nameSorted, setNameSorted] = useState(false);
   const [weight, setWeight] = useState(false);
   const [hide, setHide] = useState(false);
-  // const HOGS = [...hogs, ...savedHogs];
   const [HOGS, setHog] = useState([...hogs]);
+  const greasedHogs = HOGS.filter((aHog) => aHog.greased);
 
   function megaSort(arrOfHogs, weightToggleEnable = false) {
     if (weightToggleEnable) {
@@ -50,22 +47,14 @@ function App() {
     }
   }
 
-  const regularHogs = HOGS;
-  const greasedHogs = HOGS.filter((aHog) => aHog.greased);
-
-  const amISortedGreased = nameSorted
-    ? megaSort(greasedHogs, weight)
-    : megaSort(greasedHogs, weight); //.sort((a, b) => 0.5 - Math.random());
-  const amISortedNotGreased = nameSorted
-    ? megaSort(regularHogs, weight)
-    : megaSort(regularHogs, weight); //.sort((a, b) => 0.5 - Math.random());
+  useEffect(() => {
+    //Runs on the first render
+    //And any time any dependency value changes
+    console.log(`hog(s) added!`);
+  }, [HOGS]);
 
   const handleAddHog = (hog) => {
-    console.log("yoooooo", hog);
-    // savedHogs.push(hog);
     setHog([hog, ...HOGS]);
-    // 👇️ take parameter passed from Child component
-    // setCount(current => current + num);
   };
 
   return (
@@ -114,9 +103,14 @@ function App() {
         />{" "}
         HIDE THE HOGS!
       </p>
+
       <CreateHog handleAddHog={handleAddHog} />
       {hide ? null : (
-        <Tile a_hog={greased ? amISortedGreased : amISortedNotGreased} />
+        <Tile
+          a_hog={
+            greased ? megaSort(greasedHogs, weight) : megaSort(HOGS, weight)
+          }
+        />
       )}
     </div>
   );

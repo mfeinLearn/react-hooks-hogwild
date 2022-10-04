@@ -50,23 +50,3 @@ function Tile(props) {
 }
 
 export default Tile;
-
-////////////////////////
-
-// function Goal(props) {
-//   const isGoal = props.isGoal;
-//   return <>{isGoal ? <MadeGoal /> : <MissedGoal />}</>;
-// }
-
-// const root = ReactDOM.createRoot(document.getElementById("root"));
-// root.render(<Goal isGoal={false} />);
-
-// ) : (
-//     <ul>
-//       {<li>{hog["highest medal achieved"]}</li>}
-//       <li>{hog.specialty}</li>
-//       <li>{hog.weight}</li>
-//       <li>{hog.greased ? "True" : "False"}</li>
-//     </ul>
-//   );
-// });

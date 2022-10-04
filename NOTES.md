@@ -22,5 +22,11 @@
 - [x] add new hogs
 
 TO DO:
-[] add more hooks
-[] convert function components to class components
+[] refactoring
+
+- [x] combine amISortedGreased and amISortedNotGreased
+
+  [x] add more hooks
+
+- useEffect
+  [] convert function components to class components
