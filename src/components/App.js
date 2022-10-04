@@ -55,10 +55,10 @@ function App() {
 
   const amISortedGreased = nameSorted
     ? megaSort(greasedHogs, weight)
-    : megaSort(greasedHogs, weight).sort((a, b) => 0.5 - Math.random());
+    : megaSort(greasedHogs, weight); //.sort((a, b) => 0.5 - Math.random());
   const amISortedNotGreased = nameSorted
     ? megaSort(regularHogs, weight)
-    : megaSort(regularHogs, weight).sort((a, b) => 0.5 - Math.random());
+    : megaSort(regularHogs, weight); //.sort((a, b) => 0.5 - Math.random());
 
   const handleAddHog = (hog) => {
     console.log("yoooooo", hog);

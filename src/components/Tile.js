@@ -8,10 +8,13 @@ function Tile(props) {
   //   let toggler = true;
   const details = (hog) => (
     <ul>
-      {<li>{hog["highest medal achieved"]}</li>}
-      <li>{hog.specialty}</li>
-      <li>{hog.weight}</li>
-      <li>{hog.greased ? "True" : "False"}</li>
+      {<li>{"Highest Medal Achieved: " + hog["highest medal achieved"]}</li>}
+      <li>{"Specialty: " + hog.specialty}</li>
+      <li>{"Weight : " + hog.weight}</li>
+      <li>
+        {"Greased: "}
+        {hog.greased ? "True" : "False"}
+      </li>
     </ul>
   );
 
@@ -22,12 +25,24 @@ function Tile(props) {
 
   const rHogs = hogss.map((hog) => {
     return (
-      <ul key={hog.name} onClick={() => handleClick()}>
-        <li>{hog.name}</li>
-        <li>{hog.image}</li>
+      <div
+        class="ui centered card"
+        key={hog.name}
+        onClick={() => handleClick()}
+      >
+        <img
+          src={hog.image}
+          alt={hog.name + " the hog"}
+          width="290"
+          height="290"
+        ></img>
+        <div class="content">
+          <div class="header">{hog.name + " " + hog.weight}</div>
+        </div>
+
         <br />
-        <li>{toggler ? details(hog) : null}</li>
-      </ul>
+        <div>{toggler ? details(hog) : null}</div>
+      </div>
     );
   });
 

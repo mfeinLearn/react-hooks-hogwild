@@ -12,7 +12,15 @@
 
 [x] BONUS: Allow users to hide hogs (not delete them, just hide them from view!)
 
-[] BONUS: Add a form to allow users to add new hogs to the page
+[x] BONUS: Add a form to allow users to add new hogs to the page
 
-- create a form
-- add new hogs
+[x] Implement Semantic Cards for each hog
+
+[x] extra debug: render the weight
+
+- [x] create a form
+- [x] add new hogs
+
+TO DO:
+[] add more hooks
+[] convert function components to class components
