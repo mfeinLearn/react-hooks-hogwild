@@ -29,4 +29,4 @@ TO DO:
   [x] add more hooks
 
 - useEffect
-  [] convert function components to class components
+  [x] convert function components to class components

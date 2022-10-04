@@ -1,19 +1,94 @@
-import React, { useState } from "react";
+import React, { Component } from "react";
 import Nav from "./Nav";
 import Tile from "./Tile";
 import CreateHog from "./CreateHog";
-import { useEffect } from "react";
 import hogs from "../porkers_data";
 
-function App() {
-  const [greased, setGreased] = useState(false);
-  const [nameSorted, setNameSorted] = useState(false);
-  const [weight, setWeight] = useState(false);
-  const [hide, setHide] = useState(false);
-  const [HOGS, setHog] = useState([...hogs]);
-  const greasedHogs = HOGS.filter((aHog) => aHog.greased);
+class App extends Component {
+  state = {
+    greased: false,
+    nameSorted: false,
+    weight: false,
+    hide: false,
+    HOGS: [...hogs],
+  };
+  greasedHogs = this.state.HOGS.filter((aHog) => aHog.greased);
 
-  function megaSort(arrOfHogs, weightToggleEnable = false) {
+  // componentDidUpdate(prevProps, prevState) {
+  //   console.log(prevProps, prevState);
+  // }
+
+  render() {
+    return (
+      <div className="App">
+        <Nav />
+        <p>
+          <input
+            type="checkbox"
+            checked={this.state.greased}
+            onClick={() => {
+              this.setState({
+                greased: !this.state.greased,
+              });
+            }}
+          />{" "}
+          Greased!
+        </p>
+
+        <p>
+          <input
+            type="checkbox"
+            checked={this.state.nameSorted}
+            onClick={() => {
+              this.setState({
+                nameSorted: !this.state.nameSorted,
+              });
+            }}
+          />{" "}
+          name sorted!
+        </p>
+
+        <p>
+          <input
+            type="checkbox"
+            checked={this.state.weight}
+            onClick={() => {
+              this.setState({
+                weight: !this.state.weight,
+              });
+            }}
+          />{" "}
+          weight sorted!
+        </p>
+
+        <p>
+          <input
+            type="checkbox"
+            checked={this.state.hide}
+            onClick={() => {
+              this.setState({
+                hide: !this.state.hide,
+              });
+            }}
+          />{" "}
+          HIDE THE HOGS!
+        </p>
+
+        <CreateHog handleAddHog={this.handleAddHog} />
+        {this.state.hide ? null : (
+          <Tile
+            a_hog={
+              this.state.greased
+                ? this.megaSort(this.greasedHogs, this.state.weight)
+                : this.megaSort(this.state.HOGS, this.state.weight)
+            }
+          />
+        )}
+      </div>
+    );
+  }
+
+  megaSort(arrOfHogs, weightToggleEnable = false) {
     if (weightToggleEnable) {
       arrOfHogs.sort((a, b) => {
         // in place - sort
@@ -47,73 +122,11 @@ function App() {
     }
   }
 
-  useEffect(() => {
-    //Runs on the first render
-    //And any time any dependency value changes
-    console.log(`hog(s) added!`);
-  }, [HOGS]);
-
-  const handleAddHog = (hog) => {
-    setHog([hog, ...HOGS]);
+  handleAddHog = (hog) => {
+    this.setState({
+      HOGS: [hog, ...this.state.HOGS],
+    });
   };
-
-  return (
-    <div className="App">
-      <Nav />
-      <p>
-        <input
-          type="checkbox"
-          checked={greased}
-          onClick={() => {
-            setGreased(!greased);
-          }}
-        />{" "}
-        Greased!
-      </p>
-
-      <p>
-        <input
-          type="checkbox"
-          checked={nameSorted}
-          onClick={() => {
-            setNameSorted(!nameSorted);
-          }}
-        />{" "}
-        name sorted!
-      </p>
-
-      <p>
-        <input
-          type="checkbox"
-          checked={weight}
-          onClick={() => {
-            setWeight(!weight);
-          }}
-        />{" "}
-        weight sorted!
-      </p>
-
-      <p>
-        <input
-          type="checkbox"
-          checked={hide}
-          onClick={() => {
-            setHide(!hide);
-          }}
-        />{" "}
-        HIDE THE HOGS!
-      </p>
-
-      <CreateHog handleAddHog={handleAddHog} />
-      {hide ? null : (
-        <Tile
-          a_hog={
-            greased ? megaSort(greasedHogs, weight) : megaSort(HOGS, weight)
-          }
-        />
-      )}
-    </div>
-  );
 }
 
 export default App;

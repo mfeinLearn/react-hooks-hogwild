@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+//Tile.js
 
-function Tile(props) {
-  const hogss = props.a_hog;
+import React, { Component } from "react";
 
-  const [toggler, setToggler] = useState(false);
+class Tile extends Component {
+  state = {
+    toggler: false,
+  };
 
-  //   let toggler = true;
-  const details = (hog) => (
+  details = (hog) => (
     <ul>
       {<li>{"Highest Medal Achieved: " + hog["highest medal achieved"]}</li>}
       <li>{"Specialty: " + hog.specialty}</li>
@@ -18,35 +19,38 @@ function Tile(props) {
     </ul>
   );
 
-  function handleClick() {
-    // toggler = false;
-    setToggler(() => !toggler);
+  handleClick() {
+    this.setState({
+      toggler: !this.state.toggler,
+    });
   }
 
-  const rHogs = hogss.map((hog) => {
-    return (
-      <div
-        class="ui centered card"
-        key={hog.name}
-        onClick={() => handleClick()}
-      >
-        <img
-          src={hog.image}
-          alt={hog.name + " the hog"}
-          width="290"
-          height="290"
-        ></img>
-        <div class="content">
-          <div class="header">{hog.name + " " + hog.weight}</div>
+  render() {
+    const rHogs = this.props.a_hog.map((hog) => {
+      return (
+        <div
+          className="ui centered card"
+          key={hog.name}
+          onClick={() => this.handleClick()}
+        >
+          <img
+            src={hog.image}
+            alt={hog.name + " the hog"}
+            width="290"
+            height="290"
+          ></img>
+          <div className="content">
+            <div className="header">{hog.name + " " + hog.weight}</div>
+          </div>
+
+          <br />
+          <div>{this.state.toggler ? this.details(hog) : null}</div>
         </div>
+      );
+    });
 
-        <br />
-        <div>{toggler ? details(hog) : null}</div>
-      </div>
-    );
-  });
-
-  return rHogs;
+    return rHogs;
+  }
 }
 
 export default Tile;
